@@ -20,7 +20,7 @@ namespace HBase_Query
             request.Accept = "application/json";
             request.UserAgent = "curl/7.37.0";
 
-            //github test
+            //github test  sds
 
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 
