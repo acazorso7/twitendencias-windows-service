@@ -20,6 +20,8 @@ namespace HBase_Query
             request.Accept = "application/json";
             request.UserAgent = "curl/7.37.0";
 
+            //github test
+
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 
             Stream stream = response.GetResponseStream();
