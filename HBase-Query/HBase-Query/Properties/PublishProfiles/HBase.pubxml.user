@@ -17,7 +17,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/05/2016 17:29:12</publishTime>
     </File>
     <File Include="bin/HBase-Query.dll">
-      <publishTime>05/19/2016 16:41:14</publishTime>
+      <publishTime>05/31/2016 21:03:44</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
       <publishTime>05/05/2016 17:28:52</publishTime>
@@ -89,7 +89,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/06/2016 18:33:25</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/06/2016 18:42:47</publishTime>
+      <publishTime>05/31/2016 20:11:01</publishTime>
     </File>
   </ItemGroup>
 </Project>

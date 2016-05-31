@@ -14,7 +14,8 @@ namespace HBase_Query
     {
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
-        RootObject GetTweets(string table, string key);
+
+        MoodLists GetTop10PositiveNegativeTweets(string table, string key);
     }
 
 

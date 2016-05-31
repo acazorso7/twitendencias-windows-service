@@ -32,3 +32,36 @@ c:\users\app_igualada\documents\visual studio 2015\Projects\HBase-Query\HBase-Qu
 C:\Users\APP_IGUALADA\documents\visual studio 2015\Projects\HBase-Query\HBase-Query\bin\WebHttpCors.dll
 C:\Users\APP_IGUALADA\documents\visual studio 2015\Projects\HBase-Query\HBase-Query\bin\WebHttpCors.pdb
 C:\Users\APP_IGUALADA\documents\visual studio 2015\Projects\HBase-Query\HBase-Query\obj\Debug\HBase-Query.csprojResolveAssemblyReference.cache
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\HBase-Query.dll.config
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\HBase-Query.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\HBase-Query.pdb
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.DependencyCollector.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.Web.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Web.TelemetryChannel.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.Azure.AppService.ApiApps.Service.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Newtonsoft.Json.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Swashbuckle.Core.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Net.Http.Formatting.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.WebHost.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\WebActivatorEx.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.DependencyCollector.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.Web.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Web.TelemetryChannel.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Newtonsoft.Json.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Net.Http.Formatting.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.WebHost.xml
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\WebHttpCors.pdb
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.csprojResolveAssemblyReference.cache
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.pdb
