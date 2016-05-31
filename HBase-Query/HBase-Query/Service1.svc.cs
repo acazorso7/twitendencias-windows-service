@@ -25,7 +25,7 @@ namespace HBase_Query
             request.UserAgent = "curl/7.37.0";
 
             //github test  sds
-
+            //Push
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 
             Stream stream = response.GetResponseStream();
