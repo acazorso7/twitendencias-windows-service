@@ -14,7 +14,7 @@ namespace HBase_Query
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class ServiceHBase : IServiceHBase
     {
-        public const string HBaseIp = "192.168.1.43:8080";
+        public const string HBaseIp = "192.168.1.13:8080";
 
         public MoodsTweets GetTop10PositiveNegativeTweets(string key)
         {
@@ -111,7 +111,7 @@ namespace HBase_Query
             const string Positive = "Positive";
             const string Negative = "Negative";
 
-            string key = date == string.Empty ? category+"-*" : category + "-" + date;
+            string key = string.IsNullOrEmpty(date) ? category+"-*" : category + "-" + date;
             string url = "http://" + HBaseIp + "/categories/" + key;
 
             WriteToFile("GetTweetsByCategoryAndDate", "Start", "categories", key);
@@ -160,7 +160,7 @@ namespace HBase_Query
         {
             WriteToFile("GetTweetsByCategory", "Start", "categories", category);
             WriteToFile("GetTweetsByCategory", "Go To GetTweetsByCategoryAndDay", "categories", category);
-            return GetTweetsByCategoryAndDate("categories", category);
+            return GetTweetsByCategoryAndDate(category);
         }
 
         private string DecodeBase64(string value)
@@ -190,7 +190,7 @@ namespace HBase_Query
             string message = string.Format("{0} {1}: {2} table: {3}, key {4}", 
                 currentDate.ToString("dd/MM/yyyy"), status, text, table, key);
 
-            string path = "ServiceLog_"+ currentDate.ToString("dd_MM_yyyy") + ".txt";
+            string path = "C:\\BigData\\ServiceLog_"+ currentDate.ToString("dd_MM_yyyy") + ".txt";
             using (StreamWriter writer = new StreamWriter(path, true))
             {
                 writer.WriteLine(message);
