@@ -16,14 +16,14 @@ namespace HBase_Query
     {
         public const string HBaseIp = "192.168.1.43:8080";
 
-        public MoodsTweets GetTop10PositiveNegativeTweets(string table, string key)
+        public MoodsTweets GetTop10PositiveNegativeTweets(string key)
         {
-            WriteToFile("GetTop10PositiveNegativeTweets", "Start", table, key);
+            WriteToFile("GetTop10PositiveNegativeTweets", "Start", "mood", key);
 
             const string Positive = "Positive";
             const string Negative = "Negative";
 
-            string url = "http://" + HBaseIp + "/" + table + "/" + key;
+            string url = "http://" + HBaseIp + "/mood/" + key;
             var data = ConnectToHBaseService(url);
 
             MoodsTweets moodsTweets = new MoodsTweets();
@@ -36,19 +36,19 @@ namespace HBase_Query
                 {
                     try
                     {
-                        TweetExtended moodObj = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
-                        if(moodObj.sentiment == Positive)
+                        TweetExtended tweetExtended = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
+                        if (tweetExtended.sentiment == Positive)
                         {
-                            moodsTweets.positiveComments.Add(moodObj);
+                            moodsTweets.positiveComments.Add(tweetExtended);
                         }
-                        else if(moodObj.sentiment == Negative)
+                        else if (tweetExtended.sentiment == Negative)
                         {
-                            moodsTweets.negativeComments.Add(moodObj);
+                            moodsTweets.negativeComments.Add(tweetExtended);
                         }
                     }
                     catch(Exception ex)
                     {
-                        WriteToFile("GetTop10PositiveNegativeTweets", "Exception: "+ex.ToString(), table, key);
+                        WriteToFile("GetTop10PositiveNegativeTweets", "Exception: "+ex.ToString(), "mood", key);
                     }
                 }
             }
@@ -56,17 +56,17 @@ namespace HBase_Query
             moodsTweets.positiveComments = moodsTweets.positiveComments.OrderBy(nc => nc.posScore).Take(10).ToList();
             moodsTweets.negativeComments = moodsTweets.negativeComments.OrderBy(nc => nc.negScore).Take(10).ToList();
 
-            WriteToFile("GetTop10PositiveNegativeTweets", "End", table, key);
+            WriteToFile("GetTop10PositiveNegativeTweets", "End", "mood", key);
 
             return moodsTweets;
         }
 
 
-        public Ratio GetPositiveAndNegativeRatioByDate(string table, string key)
+        public Ratio GetPositiveAndNegativeRatioByDate(string key, string category)
         {
-            WriteToFile("GetPositiveAndNegativeRatioByDate", "Start", table, key);
+            WriteToFile("GetPositiveAndNegativeRatioByDate", "Start", "minmood", key);
 
-            string url = "http://" + HBaseIp + "/" + table + "/" + key;
+            string url = "http://" + HBaseIp + "/minmood/" + key;
             var data = ConnectToHBaseService(url);
 
             Ratio positiveNegativeRatio = new Ratio();
@@ -80,42 +80,50 @@ namespace HBase_Query
                     try
                     {
                         TweetBase tweetBase = JsonConvert.DeserializeObject<TweetBase>(this.DecodeBase64(cell.dollar));
-                        decimal positiveScore = tweetBase.posScore == string.Empty ? 0 : Convert.ToDecimal(tweetBase.posScore);
-                        decimal negativeScore = tweetBase.negScore == string.Empty ? 0 : Convert.ToDecimal(tweetBase.negScore);
-                        if (positiveScore > negativeScore)
+                        if (tweetBase.category == category || category == "General")
                         {
-                            positiveNegativeRatio.positive++;
-                        }
-                        else if (positiveScore < negativeScore)
-                        {
-                            positiveNegativeRatio.negative++;
+                            decimal positiveScore = tweetBase.posScore == string.Empty ? 0 : Convert.ToDecimal(tweetBase.posScore);
+                            decimal negativeScore = tweetBase.negScore == string.Empty ? 0 : Convert.ToDecimal(tweetBase.negScore);
+                            if (positiveScore > negativeScore)
+                            {
+                                positiveNegativeRatio.positive++;
+                            }
+                            else if (positiveScore < negativeScore)
+                            {
+                                positiveNegativeRatio.negative++;
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
-                        WriteToFile("GetPositiveAndNegativeRatioByDate", "Exception: " + ex.ToString(), table, key);
+                        WriteToFile("GetPositiveAndNegativeRatioByDate", "Exception: " + ex.ToString(), "minmood", key);
                     }
                 }
             }
 
-            WriteToFile("GetPositiveAndNegativeRatioByDate", "End", table, key);
+            WriteToFile("GetPositiveAndNegativeRatioByDate", "End", "minmood", key);
 
             return positiveNegativeRatio;
         }
 
-        public CategoricalTweets GetTweetsByCategoryAndDate(string table, string category, string date = "")
+        public CategoricalTweets GetTweetsByCategoryAndDate(string category, string date = "")
         {
-            string key = date == string.Empty ? category : category + "-" + date;
-            string url = "http://" + HBaseIp + "/" + table + "/" + key;
+            const string Positive = "Positive";
+            const string Negative = "Negative";
 
-            WriteToFile("GetTweetsByCategoryAndDate", "Start", table, key);
+            string key = date == string.Empty ? category+"-*" : category + "-" + date;
+            string url = "http://" + HBaseIp + "/categories/" + key;
+
+            WriteToFile("GetTweetsByCategoryAndDate", "Start", "categories", key);
 
             var data = ConnectToHBaseService(url);
 
             CategoricalTweets categoricalTweets = new CategoricalTweets();
             categoricalTweets.date = date;
             categoricalTweets.category = category;
-            categoricalTweets.tweets = new List<TweetExtended>();
+            categoricalTweets.moodTweets = new MoodsTweets();
+            categoricalTweets.moodTweets.negativeComments = new List<TweetExtended>();
+            categoricalTweets.moodTweets.positiveComments = new List<TweetExtended>();
 
             foreach (Row row in data.Row)
             {
@@ -123,26 +131,36 @@ namespace HBase_Query
                 {
                     try
                     {
-                        TweetExtended moodObj = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
-                        categoricalTweets.tweets.Add(moodObj);
+                        TweetExtended tweetExtended = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
+                        if (tweetExtended.sentiment == Positive)
+                        {
+                            categoricalTweets.moodTweets.positiveComments.Add(tweetExtended);
+                        }
+                        else if (tweetExtended.sentiment == Negative)
+                        {
+                            categoricalTweets.moodTweets.negativeComments.Add(tweetExtended);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        WriteToFile("GetTweetsByCategoryAndDay", "Exception: " + ex.ToString(), table, key);
+                        WriteToFile("GetTweetsByCategoryAndDate", "Exception: " + ex.ToString(), "categories", key);
                     }
                 }
             }
 
-            WriteToFile("GetTweetsByCategoryAndDate", "End", table, key);
+            categoricalTweets.moodTweets.positiveComments = categoricalTweets.moodTweets.positiveComments.OrderBy(nc => nc.posScore).Take(10).ToList();
+            categoricalTweets.moodTweets.negativeComments = categoricalTweets.moodTweets.negativeComments.OrderBy(nc => nc.negScore).Take(10).ToList();
+
+            WriteToFile("GetTweetsByCategoryAndDate", "End", "categories", key);
 
             return categoricalTweets;
         }
 
-        public CategoricalTweets GetTweetsByCategory(string table, string category)
+        public CategoricalTweets GetTweetsByCategory(string category)
         {
-            WriteToFile("GetTweetsByCategory", "Start", table, category);
-            WriteToFile("GetTweetsByCategory", "Go To GetTweetsByCategoryAndDay", table, category);
-            return GetTweetsByCategoryAndDate(table, category);
+            WriteToFile("GetTweetsByCategory", "Start", "categories", category);
+            WriteToFile("GetTweetsByCategory", "Go To GetTweetsByCategoryAndDay", "categories", category);
+            return GetTweetsByCategoryAndDate("categories", category);
         }
 
         private string DecodeBase64(string value)

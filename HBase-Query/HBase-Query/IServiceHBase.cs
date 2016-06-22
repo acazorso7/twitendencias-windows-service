@@ -15,22 +15,22 @@ namespace HBase_Query
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
 
-        MoodsTweets GetTop10PositiveNegativeTweets(string table, string key);
+        MoodsTweets GetTop10PositiveNegativeTweets(string key);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
 
-        Ratio GetPositiveAndNegativeRatioByDate(string table, string key);
+        Ratio GetPositiveAndNegativeRatioByDate(string key, string category);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
 
-        CategoricalTweets GetTweetsByCategoryAndDate(string table, string date, string category);
+        CategoricalTweets GetTweetsByCategoryAndDate(string date, string category);
 
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
 
-        CategoricalTweets GetTweetsByCategory(string table, string category);
+        CategoricalTweets GetTweetsByCategory(string category);
     }
 }
