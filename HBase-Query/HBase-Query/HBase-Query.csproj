@@ -128,16 +128,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
+    <Content Include="ServiceHBase.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="Models\Base\Cell.cs" />
+    <Compile Include="Models\Base\RootObject.cs" />
+    <Compile Include="Models\Base\Row.cs" />
+    <Compile Include="Models\CategoricalTweets.cs" />
+    <Compile Include="Models\MoodsTweets.cs" />
+    <Compile Include="Models\Tweet.cs" />
+    <Compile Include="ServiceHBase.svc.cs">
+      <DependentUpon>ServiceHBase.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="IServiceHBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
