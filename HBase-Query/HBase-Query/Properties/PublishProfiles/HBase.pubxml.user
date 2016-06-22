@@ -17,7 +17,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/05/2016 17:29:12</publishTime>
     </File>
     <File Include="bin/HBase-Query.dll">
-      <publishTime>05/31/2016 21:03:44</publishTime>
+      <publishTime>06/22/2016 21:09:37</publishTime>
     </File>
     <File Include="bin/Microsoft.ApplicationInsights.dll">
       <publishTime>05/05/2016 17:28:52</publishTime>
@@ -71,7 +71,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/05/2016 18:34:59</publishTime>
     </File>
     <File Include="bin/WebHttpCors.dll">
-      <publishTime>05/06/2016 18:41:30</publishTime>
+      <publishTime>06/22/2016 16:17:02</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>05/06/2016 18:00:57</publishTime>
@@ -88,8 +88,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Service1.svc">
       <publishTime>05/06/2016 18:33:25</publishTime>
     </File>
+    <File Include="ServiceHBase.svc">
+      <publishTime>06/22/2016 16:05:05</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>05/31/2016 20:11:01</publishTime>
+      <publishTime>06/22/2016 20:17:28</publishTime>
     </File>
   </ItemGroup>
 </Project>

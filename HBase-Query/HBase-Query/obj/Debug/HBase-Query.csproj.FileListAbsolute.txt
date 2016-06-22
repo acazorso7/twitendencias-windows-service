@@ -52,6 +52,7 @@ C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.dll
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.WebHost.dll
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\WebActivatorEx.dll
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\WebHttpCors.dll
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.xml
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.DependencyCollector.xml
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\Microsoft.ApplicationInsights.Extensibility.Web.xml
@@ -63,5 +64,3 @@ C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.WebHost.xml
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.dll
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.pdb
-C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.csprojResolveAssemblyReference.cache
-C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\WebHttpCors.dll

@@ -156,6 +156,68 @@ namespace HBase_Query
             return categoricalTweets;
         }
 
+        public CategoricalTweets GetTweetsByCategoryConceptAndDate(string category, string concept, string date = "")
+        {
+            const string Positive = "Positive";
+            const string Negative = "Negative";
+
+            string table = category == "General" ? "mood" : "categories";
+
+            string key = string.IsNullOrEmpty(date)  ?
+                category + "-*" : category + "-" + date;
+
+            if(category == "General")
+            {
+                key = string.IsNullOrEmpty(date) ? "*" : date;
+            }
+
+            string url = "http://" + HBaseIp + "/"+ table + "/" + key;
+
+            WriteToFile("GetTweetsByCategoryConceptAndDate", "Start", table, key);
+
+            var data = ConnectToHBaseService(url);
+
+            CategoricalTweets categoricalTweets = new CategoricalTweets();
+            categoricalTweets.date = date;
+            categoricalTweets.category = category;
+            categoricalTweets.moodTweets = new MoodsTweets();
+            categoricalTweets.moodTweets.negativeComments = new List<TweetExtended>();
+            categoricalTweets.moodTweets.positiveComments = new List<TweetExtended>();
+
+            foreach (Row row in data.Row)
+            {
+                foreach (Cell cell in row.Cell)
+                {
+                    try
+                    {
+                        TweetExtended tweetExtended = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
+                        if ((string.IsNullOrEmpty(concept) || tweetExtended.tweet.Contains(concept)))
+                        {
+                            if (tweetExtended.sentiment == Positive)
+                            {
+                                categoricalTweets.moodTweets.positiveComments.Add(tweetExtended);
+                            }
+                            else if (tweetExtended.sentiment == Negative)
+                            {
+                                categoricalTweets.moodTweets.negativeComments.Add(tweetExtended);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteToFile("GetTweetsByCategoryConceptAndDate", "Exception: " + ex.ToString(), "categories", key);
+                    }
+                }
+            }
+
+            categoricalTweets.moodTweets.positiveComments = categoricalTweets.moodTweets.positiveComments.OrderBy(nc => nc.posScore).Take(10).ToList();
+            categoricalTweets.moodTweets.negativeComments = categoricalTweets.moodTweets.negativeComments.OrderBy(nc => nc.negScore).Take(10).ToList();
+
+            WriteToFile("GetTweetsByCategoryConceptAndDate", "End", "categories", key);
+
+            return categoricalTweets;
+        }
+
         public CategoricalTweets GetTweetsByCategory(string category)
         {
             WriteToFile("GetTweetsByCategory", "Start", "categories", category);

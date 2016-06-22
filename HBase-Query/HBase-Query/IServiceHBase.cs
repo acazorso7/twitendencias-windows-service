@@ -32,5 +32,9 @@ namespace HBase_Query
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
 
         CategoricalTweets GetTweetsByCategory(string category);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
+        CategoricalTweets GetTweetsByCategoryConceptAndDate(string category, string concept, string date);
     }
 }
