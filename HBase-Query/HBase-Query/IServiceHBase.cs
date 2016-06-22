@@ -20,7 +20,12 @@ namespace HBase_Query
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
 
-        CategoricalTweets GetTweetsByCategoryAndDay(string table, string date, string category);
+        Ratio GetPositiveAndNegativeRatioByDate(string table, string key);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
+
+        CategoricalTweets GetTweetsByCategoryAndDate(string table, string date, string category);
 
 
         [OperationContract]

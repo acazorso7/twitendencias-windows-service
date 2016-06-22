@@ -11,6 +11,6 @@ namespace HBase_Query.Models
 
         public string date { get; set; }
 
-        public List<Tweet> tweets { get; set; }
+        public List<TweetExtended> tweets { get; set; }
     }
 }

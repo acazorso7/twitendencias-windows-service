@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.ServiceModel.Activation;
-using System.ServiceModel.Web;
 using System.Text;
 using System.Linq;
 using HBase_Query.Models;
@@ -28,8 +27,8 @@ namespace HBase_Query
             var data = ConnectToHBaseService(url);
 
             MoodsTweets moodsTweets = new MoodsTweets();
-            moodsTweets.negativeComments = new List<Tweet>();
-            moodsTweets.positiveComments = new List<Tweet>();
+            moodsTweets.negativeComments = new List<TweetExtended>();
+            moodsTweets.positiveComments = new List<TweetExtended>();
 
             foreach (Row row in data.Row)
             {
@@ -37,7 +36,7 @@ namespace HBase_Query
                 {
                     try
                     {
-                        Tweet moodObj = JsonConvert.DeserializeObject<Tweet>(this.DecodeBase64(cell.dollar));
+                        TweetExtended moodObj = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
                         if(moodObj.sentiment == Positive)
                         {
                             moodsTweets.positiveComments.Add(moodObj);
@@ -62,19 +61,17 @@ namespace HBase_Query
             return moodsTweets;
         }
 
-        public CategoricalTweets GetTweetsByCategoryAndDay(string table, string category, string date = "")
+
+        public Ratio GetPositiveAndNegativeRatioByDate(string table, string key)
         {
-            string key = date == string.Empty ? category : category + "-" + date;
+            WriteToFile("GetPositiveAndNegativeRatioByDate", "Start", table, key);
+
             string url = "http://" + HBaseIp + "/" + table + "/" + key;
-
-            WriteToFile("GetTweetsByCategoryAndDay", "Start", table, key);
-
             var data = ConnectToHBaseService(url);
 
-            CategoricalTweets categoricalTweets = new CategoricalTweets();
-            categoricalTweets.date = date;
-            categoricalTweets.category = category;
-            categoricalTweets.tweets = new List<Tweet>();
+            Ratio positiveNegativeRatio = new Ratio();
+            positiveNegativeRatio.negative = 0;
+            positiveNegativeRatio.positive = 0;
 
             foreach (Row row in data.Row)
             {
@@ -82,7 +79,51 @@ namespace HBase_Query
                 {
                     try
                     {
-                        Tweet moodObj = JsonConvert.DeserializeObject<Tweet>(this.DecodeBase64(cell.dollar));
+                        TweetBase tweetBase = JsonConvert.DeserializeObject<TweetBase>(this.DecodeBase64(cell.dollar));
+                        decimal positiveScore = tweetBase.posScore == string.Empty ? 0 : Convert.ToDecimal(tweetBase.posScore);
+                        decimal negativeScore = tweetBase.negScore == string.Empty ? 0 : Convert.ToDecimal(tweetBase.negScore);
+                        if (positiveScore > negativeScore)
+                        {
+                            positiveNegativeRatio.positive++;
+                        }
+                        else if (positiveScore < negativeScore)
+                        {
+                            positiveNegativeRatio.negative++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteToFile("GetPositiveAndNegativeRatioByDate", "Exception: " + ex.ToString(), table, key);
+                    }
+                }
+            }
+
+            WriteToFile("GetPositiveAndNegativeRatioByDate", "End", table, key);
+
+            return positiveNegativeRatio;
+        }
+
+        public CategoricalTweets GetTweetsByCategoryAndDate(string table, string category, string date = "")
+        {
+            string key = date == string.Empty ? category : category + "-" + date;
+            string url = "http://" + HBaseIp + "/" + table + "/" + key;
+
+            WriteToFile("GetTweetsByCategoryAndDate", "Start", table, key);
+
+            var data = ConnectToHBaseService(url);
+
+            CategoricalTweets categoricalTweets = new CategoricalTweets();
+            categoricalTweets.date = date;
+            categoricalTweets.category = category;
+            categoricalTweets.tweets = new List<TweetExtended>();
+
+            foreach (Row row in data.Row)
+            {
+                foreach (Cell cell in row.Cell)
+                {
+                    try
+                    {
+                        TweetExtended moodObj = JsonConvert.DeserializeObject<TweetExtended>(this.DecodeBase64(cell.dollar));
                         categoricalTweets.tweets.Add(moodObj);
                     }
                     catch (Exception ex)
@@ -92,7 +133,7 @@ namespace HBase_Query
                 }
             }
 
-            WriteToFile("GetTweetsByCategoryAndDay", "End", table, key);
+            WriteToFile("GetTweetsByCategoryAndDate", "End", table, key);
 
             return categoricalTweets;
         }
@@ -101,7 +142,7 @@ namespace HBase_Query
         {
             WriteToFile("GetTweetsByCategory", "Start", table, category);
             WriteToFile("GetTweetsByCategory", "Go To GetTweetsByCategoryAndDay", table, category);
-            return GetTweetsByCategoryAndDay(table, category);
+            return GetTweetsByCategoryAndDate(table, category);
         }
 
         private string DecodeBase64(string value)

@@ -138,8 +138,10 @@
     <Compile Include="Models\Base\RootObject.cs" />
     <Compile Include="Models\Base\Row.cs" />
     <Compile Include="Models\CategoricalTweets.cs" />
+    <Compile Include="Models\Base\TweetBase.cs" />
     <Compile Include="Models\MoodsTweets.cs" />
-    <Compile Include="Models\Tweet.cs" />
+    <Compile Include="Models\Ratio.cs" />
+    <Compile Include="Models\TweetExtended.cs" />
     <Compile Include="ServiceHBase.svc.cs">
       <DependentUpon>ServiceHBase.svc</DependentUpon>
     </Compile>

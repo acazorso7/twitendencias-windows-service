@@ -7,8 +7,8 @@ namespace HBase_Query.Models
 {
     public class MoodsTweets
     {
-        public List<Tweet> positiveComments { get; set; }
+        public List<TweetExtended> positiveComments { get; set; }
 
-        public List<Tweet> negativeComments { get; set; }
+        public List<TweetExtended> negativeComments { get; set; }
     }
 }
