@@ -124,7 +124,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="WebHttpCors">
-      <HintPath>..\..\..\..\..\Downloads\CorsSupport\CorsSupport\WebHttpCors\bin\Debug\WebHttpCors.dll</HintPath>
+      <HintPath>libraries\WebHttpCors.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

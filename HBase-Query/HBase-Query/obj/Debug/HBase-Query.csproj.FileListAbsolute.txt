@@ -63,3 +63,5 @@ C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\System.Web.Http.WebHost.xml
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.dll
 C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.pdb
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\obj\Debug\HBase-Query.csprojResolveAssemblyReference.cache
+C:\Users\APP_IGUALADA\Documents\GitHub\twitendencias-windows-service\HBase-Query\HBase-Query\bin\WebHttpCors.dll
